@@ -1,0 +1,17 @@
+**/.env*
+**/credentials*
+**/.agents/**
+**/.git/**
+**/.codex/**
+**/target/**
+**/node_modules/**
+**/.venv/**
+**/vendor/**
+**/third-party/**
+**/generated/**
+**/fixtures/**
+**/golden/**
+**/*.node
+SOURCE_MANIFEST.json
+bindings/nodejs/package-lock.json
+docs/*DEPENDENCIES.tsv

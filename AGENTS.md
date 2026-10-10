@@ -1,0 +1,11 @@
+# LocalWeave project instructions
+
+Build a SQLite local-first sync SDK, not a coordination server. Public requirements are [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md); architecture and dependency ownership are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+- Preserve all [SDK invariants](docs/INVARIANTS.md), including SDK-owned single-connection Session capture and SQL authorizer, atomic business data/sequence/causal metadata/exact outbox, no network in transactions, full-row causal MV registers, deterministic heads, explicit resolution, validated atomic remote apply without echo or progress on failure, and no automatic remote GC. Use logical operations, not raw changeset replication. Baseline import is explicit; hashes are integrity, not authentication. Shared snapshots exclude unpublished outbox; local backup preserves it; restore/clone rotates incarnation for new operations.
+- Follow [development commands](docs/DEVELOPMENT.md), [coding standards](docs/CODING_STANDARDS.md), and [test qualification](docs/TESTING.md). Public rules must remain usable without internal task records.
+- Preserve user files. Keep pure formatting separate from semantic changes. Do not commit, push, publish, change global configuration or ignore rules without explicit authorization. Scope SDK/protocol/persistence changes explicitly before implementation.
+- Report exact commands, exit codes and unverified boundaries. Keep [capabilities](docs/CAPABILITIES.md), [limitations](docs/KNOWN_LIMITATIONS.md) and [third-party notices](docs/THIRD_PARTY.md) factual. Compilation, models and local services do not establish production backend support; unsupported semantics fail closed. Desktop Rust/CLI/two-device evidence precedes Node qualification; Android and iOS are separate milestones and browser is excluded.
+- Credentials remain host-provided: do not read or print secrets. Do not run remote services without authorization. Clean up only task-owned processes and temporary files; provide completion notifications for bounded background commands.
+
+Private plans and long logs belong under `.agents/`; they are not public requirements. Contribution and review conventions are in [CONTRIBUTING.md](CONTRIBUTING.md).

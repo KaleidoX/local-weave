@@ -1,0 +1,457 @@
+{
+  "format": 2,
+  "kind": "explicit-source-inventory-not-binary-release",
+  "project": "local-weave",
+  "display_name": "LocalWeave",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/KaleidoX/local-weave",
+  "file_count": 111,
+  "files": [
+    {
+      "path": ".editorconfig",
+      "sha256": "b6fe604ff551cbb061f87f90697bb850d4d907eef36e8d8364e6ed39ff3c18a3"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "3ba75c17ce3d208e12a9947e9734e9b460fb0f32f20a0fbafb3e821ab1545007"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "c78059074263a6104809059724beb03fb36f220d32568a2f6abde7a846f53427"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "8b3e268162ad27882fc6b0c1bb18413bd2ae51597884e70f393289bd914a99d2"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "16a1d0899dc8d39d1d361980d0b7a23175adaa44e94cc6bd314c1e7f65dc72e9"
+    },
+    {
+      "path": ".prettierignore",
+      "sha256": "aa6f735b0e7bec9f415792605b71a8145b0f611592c17ed16a60f3dd8550ca51"
+    },
+    {
+      "path": ".prettierrc.json",
+      "sha256": "8518693f23532df23eaf0cb190efb34a07f2e8aef84c9bbc22d232dfba326bd9"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "adb7f66f0fa25af29ae18ae22daeb486d293d68946a5e5a26ead599e7d458c78"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "9f9571b1762d2e8486231b6387166017f131e54da3578ac4f5bc9a2bafe989c4"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "1ce81e251fe31bf1f3642337520573907e1d19c6088ce3dedf9caa9e4fa7c40d"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "7ebc444946920bbe844b8acb9566c18ce00ef4de41d95f5af8e53bc8d333d20b"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "30a71152048e6a02dd660c6a1793f9974def6b77130886c60def965893878a1c"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "28145c9740548bef8bb6fb96a713c88e4c0df4a1b36261f6c0a94d5ede1ff344"
+    },
+    {
+      "path": "bin/lfs/.gitignore",
+      "sha256": "4f51e681b0f538132b671259a52f9261cbed8acf91f0e49fdddf550470b00b11"
+    },
+    {
+      "path": "bin/lfs/Cargo.toml",
+      "sha256": "ed4479ab59b141b600fc894e06448813e4ec4ccac176981b3b6193d8686d83a2"
+    },
+    {
+      "path": "bin/lfs/src/main.rs",
+      "sha256": "c3475149ab9f5797d6e88af68d86cef351f62e304aa723d180a4151b99846a71"
+    },
+    {
+      "path": "bin/lfs/tests/cli_smoke.py",
+      "sha256": "ab4eb11244a66fe058be6d2da13afc4392db63dce4e433c37e77735a023e1f3d"
+    },
+    {
+      "path": "bin/lfs/tests/shared_snapshot.py",
+      "sha256": "dcd382826e479fc1e13228c21f4098029dbe93558a4ba8288eda381aabd7a7ca"
+    },
+    {
+      "path": "bindings/nodejs/.gitignore",
+      "sha256": "c7b35f1f64a7053fb33b186afa0543d1af2bfbdb953411afe2865c64fe3a17cd"
+    },
+    {
+      "path": "bindings/nodejs/README.md",
+      "sha256": "baae75644e8ac490bbc84d8bb82138755bef67c460a6ba3406c9e32866b41feb"
+    },
+    {
+      "path": "bindings/nodejs/build.mjs",
+      "sha256": "f2f083183bd01c896dcffb3adc27cb65426078113a1bc5f2afa357e576ef7903"
+    },
+    {
+      "path": "bindings/nodejs/check-yaml.mjs",
+      "sha256": "0dd7832f69741850b6e5ca9f65df49529484d8d032603ccea04e662e8edb2303"
+    },
+    {
+      "path": "bindings/nodejs/eslint.config.mjs",
+      "sha256": "77764f38a8cc7dd8e2dceb0d891081b664d110ed998a01afd8eb920dc2aa4f67"
+    },
+    {
+      "path": "bindings/nodejs/example.mjs",
+      "sha256": "84a9e32943222f9d25f441b9320ab4eaa7c25b9abd18817b9de264a254132669"
+    },
+    {
+      "path": "bindings/nodejs/index.d.ts",
+      "sha256": "63c73e2029acbaf6be6ce04b060083e6453b7e79d335770e260b4428f14661b3"
+    },
+    {
+      "path": "bindings/nodejs/index.js",
+      "sha256": "828e3670e12b3abe98987e2345aa79f2841114a73f00ab1cd48d546da23492ce"
+    },
+    {
+      "path": "bindings/nodejs/native/.gitignore",
+      "sha256": "4f51e681b0f538132b671259a52f9261cbed8acf91f0e49fdddf550470b00b11"
+    },
+    {
+      "path": "bindings/nodejs/native/Cargo.toml",
+      "sha256": "d6cb7d964566fb14d7c269796d0c340cbcd6d1593b7cf8c78c33e0bae1cf3732"
+    },
+    {
+      "path": "bindings/nodejs/native/build.rs",
+      "sha256": "fcbd1ff3f627a7553fa1704dc6f558998daff8bc256015c37aace62cc49ce584"
+    },
+    {
+      "path": "bindings/nodejs/native/src/backend.rs",
+      "sha256": "cdf71071352217a0f35fab303a9fff80a6db77e308e3024bfda4b42ed62af4ab"
+    },
+    {
+      "path": "bindings/nodejs/native/src/lib.rs",
+      "sha256": "f846193ab1a62209a29d01ddb3a3549ab07aeeda8c8fb25404f04f6bb1cf5cb1"
+    },
+    {
+      "path": "bindings/nodejs/native/src/values.rs",
+      "sha256": "b8027eb4b458704e0d3c08fcb02981c2fb657b8406e9e38b801386d1d7aac67c"
+    },
+    {
+      "path": "bindings/nodejs/package-lock.json",
+      "sha256": "64838fa0b1f424c7fffd72c53f645afaf467430c8a99f8be4570c6b36b4503d8"
+    },
+    {
+      "path": "bindings/nodejs/package.json",
+      "sha256": "e2170dd387b7d6f2df58258ab6114fe995274e6a9fbcffb17769c686b71276af"
+    },
+    {
+      "path": "bindings/nodejs/test/native.test.mjs",
+      "sha256": "626ea709abf5ee43cb144ae1e0e886d5e63fec9e1cbd228eb373d51bcb22719a"
+    },
+    {
+      "path": "bindings/nodejs/test/s3-types.ts",
+      "sha256": "4130d2257775ae9b0a92e8d04dba9ce025514dbc4e09fba18c06b34411e0ac9e"
+    },
+    {
+      "path": "bindings/nodejs/test/s3.test.mjs",
+      "sha256": "e90d21ef55180422b5c134645c1d6f1e1a96b84d3a07211fb537d5293340daf1"
+    },
+    {
+      "path": "bindings/nodejs/test/s3_services.py",
+      "sha256": "9eb8039a0ac7cc32954df3873f4b16fa9424af8a204b5d191da20b43b4928131"
+    },
+    {
+      "path": "bindings/nodejs/test/types.ts",
+      "sha256": "04fea40d3a51f3c5fccb070d59b6050482bae147cd1a7856efa5468a3d38293e"
+    },
+    {
+      "path": "bindings/nodejs/test/webdav.test.mjs",
+      "sha256": "644a70b4fc33a5acd73e8a7b060e6fad9ed65593ef453eab8ae96dee450798f9"
+    },
+    {
+      "path": "bindings/nodejs/test/webdav_services.py",
+      "sha256": "c9ca6a615ee93657c7357cff16aacef5cb7e9d15708b13c7e6e97dba2d3dd553"
+    },
+    {
+      "path": "core/.gitignore",
+      "sha256": "4f51e681b0f538132b671259a52f9261cbed8acf91f0e49fdddf550470b00b11"
+    },
+    {
+      "path": "core/protocol/Cargo.toml",
+      "sha256": "e5539c4f72afc08dfeb92869c439209150ae8fefa7bb02a937bfcdf0271b831b"
+    },
+    {
+      "path": "core/protocol/src/decode.rs",
+      "sha256": "45882529ae17a268b9b84315c9c894f94f8572cef65d7deaccc0ea28bde83704"
+    },
+    {
+      "path": "core/protocol/src/lib.rs",
+      "sha256": "7e09d5c0e6c3ae1769e99ad719b15d7c3693876309ef1e5d74925ccfd0249302"
+    },
+    {
+      "path": "core/protocol/src/register.rs",
+      "sha256": "a1188dbb39ed9c59c74e48e7ddc34b553e6ecf047d625b7752e5365b955d0c6b"
+    },
+    {
+      "path": "core/protocol/tests/canonical.rs",
+      "sha256": "edb59aa6757d7013ca80f405aeebfc05f15888b61a258cbf89ca77c8df146fef"
+    },
+    {
+      "path": "core/sqlite/Cargo.toml",
+      "sha256": "d3765a129aefcc553595649bc68656f2d9be942f622a9a7dcf3d7683b2a297b5"
+    },
+    {
+      "path": "core/sqlite/examples/local_loop.rs",
+      "sha256": "15f98a8b8d16f1b14f54ac5f42ca10d749f9c1eb34191a3a0954c9cd5164af28"
+    },
+    {
+      "path": "core/sqlite/src/access.rs",
+      "sha256": "5f03103d10a9d958a75d63067283efe081c01d72fde332cdb81c04849b1b3d60"
+    },
+    {
+      "path": "core/sqlite/src/attachments.rs",
+      "sha256": "b31b9191e7b021d99298dda53e53baf17e24162d76ef96d493976b9b4cb56f2d"
+    },
+    {
+      "path": "core/sqlite/src/attempts.rs",
+      "sha256": "f512ab3353c3a2a7b431c88ad7349f96e2bc87553a834936eaa521003a36e51b"
+    },
+    {
+      "path": "core/sqlite/src/backup.rs",
+      "sha256": "d8c80f3584b8267f2490736827b93e6e290328ffb4453fe0ae5bf96655f21f81"
+    },
+    {
+      "path": "core/sqlite/src/causal.rs",
+      "sha256": "3980b533afa4d9333cfa6352dc33b2018c9c1eb5f68140270a630ca8136fa206"
+    },
+    {
+      "path": "core/sqlite/src/compatibility.rs",
+      "sha256": "d2a4d34d5533dd8a6f2df2744b86f1dd63dd6a5cff482a060b18ef8a655c5b38"
+    },
+    {
+      "path": "core/sqlite/src/envelope.rs",
+      "sha256": "2a6234f10b682c96d4750ae37a8d3fd1b5b573a4f1489985d83d2fa287b7d1df"
+    },
+    {
+      "path": "core/sqlite/src/lib.rs",
+      "sha256": "d66976c9a6eb4e1cf798265d924f9d697e72ce5947ca1ca4d0ab671bbc6b7320"
+    },
+    {
+      "path": "core/sqlite/src/schema.rs",
+      "sha256": "04ffb23f0bfa676d229a2e8bbe1894fb2ee228c814f839f2be354d30ee6ede2f"
+    },
+    {
+      "path": "core/sqlite/src/sync.rs",
+      "sha256": "602019ee774fdec61de5a1e57af27960c48327d539b4d4c1572b83bc7e7b27c3"
+    },
+    {
+      "path": "core/sqlite/src/tests.rs",
+      "sha256": "fc55133b0e74c6dcc3d88e068dfe02488356c398863f35f79c0a6f58dcdc659e"
+    },
+    {
+      "path": "core/sqlite/tests/file_paths.rs",
+      "sha256": "9c76f8528c27a4fe900cea2d1e1b99223515f577577ae8c0f669beed1f37d071"
+    },
+    {
+      "path": "core/sqlite/tests/host_sqlite.rs",
+      "sha256": "6de69e32dbf2bfe515a1fa24505420525276e9fc082de5d78d1d1fa704bf1969"
+    },
+    {
+      "path": "core/sqlite/tests/review.rs",
+      "sha256": "323c71aeb567c53c963b1612fd746bbd5e84bc6abbbb93f5e1430d88ebfbc938"
+    },
+    {
+      "path": "core/sqlite/tests/stage1.rs",
+      "sha256": "a31878ebc94f8a899aee89e110b8776b81a88d7450afa66ec38b948230028574"
+    },
+    {
+      "path": "core/sqlite/tests/stage2.rs",
+      "sha256": "2e3b4afe9db95e59d98a9e9a16de83216363555c37048ff9e9c623d0b369ba44"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "c8d861f1a3063bebd2a50dec27a5efa3ec102294964161c7d03ef2986077a5e9"
+    },
+    {
+      "path": "docs/CAPABILITIES.md",
+      "sha256": "7683cbc7854b86f03ccabeedf69892d4af6bf5b7e51aec34ddc174aae1c6e9dc"
+    },
+    {
+      "path": "docs/CODING_STANDARDS.md",
+      "sha256": "8e657380286e1fe2a46497dc529696444ca2950bf16fe333e3e866b23dc29c45"
+    },
+    {
+      "path": "docs/DELIVERY.md",
+      "sha256": "09d655358951b2232e5235df4caf90144a2a82d1829aeab81d69ba7e255c048f"
+    },
+    {
+      "path": "docs/DEPENDENCIES.tsv",
+      "sha256": "d003532fe0aa099b04703f7e8e07cc1ce9d4629179586348142ae5709d020d5d"
+    },
+    {
+      "path": "docs/DESKTOP.md",
+      "sha256": "119ac31fdc6a6fd07b557b5f05ec1152fceaeb4ed9f87f4782570abde0760b25"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "sha256": "b41d0b1c087e5caa79edafccf9d45337f6ef61b95bc49a56a0c103bfe7dbb606"
+    },
+    {
+      "path": "docs/DRIVE.md",
+      "sha256": "916b61a117a1861fa74576f62395672a488a0883af509c63d440a5234fdc2ec0"
+    },
+    {
+      "path": "docs/HOST_DEPENDENCIES.md",
+      "sha256": "f7561de346e852411aedea98a9528d8d19332af515d334161e92788ddcb7b35a"
+    },
+    {
+      "path": "docs/INVARIANTS.md",
+      "sha256": "cca48bcf5f3b83f4bf6e3598e1f76cffe342e4bec09725b4baa4f5b0bc11a88a"
+    },
+    {
+      "path": "docs/KNOWN_LIMITATIONS.md",
+      "sha256": "8fe475ac9d7e619065e751a7b8992c09c866f24c1b767a3809009829b7036651"
+    },
+    {
+      "path": "docs/NODE_DEPENDENCIES.tsv",
+      "sha256": "f201a1c72283b7eb152154e3966eca8a9b3ef128eb35bd07412bc4b29e9450e2"
+    },
+    {
+      "path": "docs/PROTOCOL.md",
+      "sha256": "87c2fa6965a76708b553bca5eda474ae8da572ffce898cd86ba71f4638beea9f"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "32fdd35473630133a6f845aac9dd7ea8f568d4720efd34c06ec4e5c6d4de1b92"
+    },
+    {
+      "path": "docs/REQUIREMENTS.md",
+      "sha256": "286bce3909ba90b840793e330a12ae6e6547a4cab9490df85bd2ca885b7abec2"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "be5e3b31e2e3860e831c61d3194c4ba1564a8f8ca9875c1ee3b82dfc999b5657"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "sha256": "4515b01eedf6ef350ddf8dc7023ea53bf6f7e0a8abf5c108e6395c8878983cc0"
+    },
+    {
+      "path": "docs/TEST_REPORT.md",
+      "sha256": "3918efc113e2ce84fcbcd5af4ddf8f9f42c2d41e31cd59fdd0041d7181cc0074"
+    },
+    {
+      "path": "docs/THIRD_PARTY.md",
+      "sha256": "5fd862a091df5d24affb8b36b85755565ccfbb10628f2a5b3c60ef602fdc34c3"
+    },
+    {
+      "path": "docs/adr/0001-session-to-logical-operations.md",
+      "sha256": "bd87c63261c18398e63a1653f28c59606db032c00f00ed4cda23c37760788942"
+    },
+    {
+      "path": "docs/adr/0002-drive-record-ids.md",
+      "sha256": "2cdc4a961be7db7a68af7b8fd2c4037d4e0830828b55b4d36a1dfe884333c83a"
+    },
+    {
+      "path": "docs/testing/TEST_BACKENDS.md",
+      "sha256": "2c1947ae4e2c719f1cba7507eabb3d13458f48d1cb27ed071f538dc3e3bfd70a"
+    },
+    {
+      "path": "integrations/opendal/.gitignore",
+      "sha256": "4f51e681b0f538132b671259a52f9261cbed8acf91f0e49fdddf550470b00b11"
+    },
+    {
+      "path": "integrations/opendal/Cargo.toml",
+      "sha256": "36a7e9eb4e494691cca81668a0f738e30495564eacc306b8d5a4f2602bd91cf4"
+    },
+    {
+      "path": "integrations/opendal/examples/two_devices.rs",
+      "sha256": "41b858bbd88897a4a2f06f00d303c149473c122f8860ad538ff8cd0fbe7fdc4b"
+    },
+    {
+      "path": "integrations/opendal/src/drive.rs",
+      "sha256": "136a56474ba7a7b8f40f29a2761e284599a5aef859cc42dc08a998a3ce6c9221"
+    },
+    {
+      "path": "integrations/opendal/src/lib.rs",
+      "sha256": "5b82b89c25bef508e932f486dce10e4a0fce6868b4c96971002f357c4bbc4ea1"
+    },
+    {
+      "path": "integrations/opendal/tests/common/mod.rs",
+      "sha256": "f8d11db5df22251c0b28288d8e347bcd1d73691d8d5ac6ba88768a3e4b375b40"
+    },
+    {
+      "path": "integrations/opendal/tests/drive.rs",
+      "sha256": "5cbcdb993d505848f18f5aa2ae9d990600cae0c37e945e7dc32addef0171c6fe"
+    },
+    {
+      "path": "integrations/opendal/tests/fixtures/drive_model.py",
+      "sha256": "54b336df0dc426f6afe5ce7169eb4f6c05e096441882fbb31adad1c6518f7b8f"
+    },
+    {
+      "path": "integrations/opendal/tests/fs.rs",
+      "sha256": "848a831c8bde9f1ad40d7e5b35d4816edd688bcb0a2b7e76620f15da81ebafec"
+    },
+    {
+      "path": "integrations/opendal/tests/http_services.py",
+      "sha256": "c2cf9345987c891dbde606d363e09880e21ae3a4c99dd8d3eb7821082b053d70"
+    },
+    {
+      "path": "integrations/opendal/tests/native_operator.rs",
+      "sha256": "a7e55973e31555d66ce888ec2980b6641001412d1eb3cc37303d459d18be0499"
+    },
+    {
+      "path": "integrations/opendal/tests/services.rs",
+      "sha256": "ac07bd7a0213a71a21f2c4a600a6d3e6ae2e1313b0f893d6e4b9041cff8ace81"
+    },
+    {
+      "path": "integrations/opendal/tests/stage4.rs",
+      "sha256": "d755e8edd1630d9b9cc098b67436a8f9e17a03a85208f9cd3c06a6d0abd4f55e"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "sha256": "2c388180d0d5476ed0d69975b382feaf709bb072d51a342add3030cfb3d1bdb2"
+    },
+    {
+      "path": "rustfmt.toml",
+      "sha256": "8cc2da23ec5443348702ca745ae2ff7a4cecf3508783ff59306af69b63608e84"
+    },
+    {
+      "path": "scripts/.gitignore",
+      "sha256": "ad49b46d1d4ac3638d9c00a13c7cb31557e4f060d7d6056fa66f639f6258952e"
+    },
+    {
+      "path": "scripts/check.py",
+      "sha256": "9a15490e073c1b266366257557ba0f67efe36116fb0bc96b93a2f1d9f8e2bffb"
+    },
+    {
+      "path": "scripts/check_docs.py",
+      "sha256": "c423d28af323cc66eb2d3f343e200b4e6908741f5b620c8106931e558125bc71"
+    },
+    {
+      "path": "scripts/dependency_inventory.py",
+      "sha256": "fbcb53e8982f7d8777d53ee004b9b6f0a313e6c139a4ff63916889a4ccba5c42"
+    },
+    {
+      "path": "scripts/project_files.py",
+      "sha256": "48560854831a4e834035a2fa83bfe6037cdafb5431ca37ae2e5a854fdd181f6a"
+    },
+    {
+      "path": "scripts/requirements-dev.txt",
+      "sha256": "cfd9de13208470b815dad9a09ec13b0e6052e1cdeb1193d78c3085fa1026441b"
+    },
+    {
+      "path": "scripts/ruff.toml",
+      "sha256": "08eab77c453138a8a161a4bf680ebf9f5cd02b94e9d292ee0540849e77ac01bb"
+    },
+    {
+      "path": "scripts/source_manifest.py",
+      "sha256": "6dc9496a2f2e8117b1d1d4aed6f89f041d7e4e610325ccfc51c3fcea05bb2106"
+    }
+  ],
+  "generated_at": "2026-10-10T03:07:49.374473+00:00"
+}

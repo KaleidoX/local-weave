@@ -1,0 +1,42 @@
+name: Linux bundled checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: always
+      TMPDIR: ${{ runner.temp }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: bindings/nodejs/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare build dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential pkg-config libclang-dev
+      - name: Prepare Rust 1.96.0
+        run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+      - name: Install locked development tools
+        run: |
+          npm ci --prefix bindings/nodejs
+          python3 -m venv scripts/.venv
+          scripts/.venv/bin/python -m pip install -r scripts/requirements-dev.txt
+      - name: Static gates
+        run: python3 scripts/check.py format-check lint type
+      - name: Fresh bundled Node addon and actual Fs tests
+        run: python3 scripts/check.py test --scope node
+      - name: Bundled Rust workspace tests (default parallelism)
+        run: python3 scripts/check.py test --scope rust
