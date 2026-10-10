@@ -1,0 +1,13 @@
+target/
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.a
+*.lib
+*.o
+.env
+.env.*
+*.tmp
+*.log

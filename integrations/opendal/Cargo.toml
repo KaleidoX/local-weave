@@ -1,0 +1,54 @@
+[package]
+name = "lfs-storage"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description.workspace = true
+readme = "../../README.md"
+[features]
+default = []
+fs = ["opendal/services-fs"]
+webdav = ["opendal/services-webdav", "dep:url", "dep:reqwest", "dep:http", "dep:opendal-http-transport-reqwest"]
+s3 = ["opendal/services-s3", "dep:url", "dep:reqwest", "dep:http", "dep:opendal-http-transport-reqwest"]
+drive-experimental = ["dep:url", "dep:reqwest", "dep:http", "dep:opendal-http-transport-reqwest", "dep:serde", "dep:serde_json"]
+
+[dependencies]
+lfs-sqlite.workspace = true
+lfs-protocol.workspace = true
+opendal.workspace = true
+tokio.workspace = true
+futures-util.workspace = true
+url = { workspace = true, optional = true }
+base64 = "=0.22.1"
+opendal-http-transport-reqwest = { optional = true, version = "=0.59.4", default-features = false, features = ["rustls"] }
+reqwest = { optional = true, version = "=0.13.5", default-features = false, features = ["rustls", "stream"] }
+http = { version = "=1.5.0", optional = true }
+sha2.workspace = true
+serde_json = { version = "=1.0.151", optional = true }
+serde = { optional = true, version = "=1.0.229", features = ["derive"] }
+[dev-dependencies]
+serde_json = "=1.0.151"
+rusqlite.workspace = true
+opendal = { workspace = true, features = ["services-fs", "services-memory"] }
+
+[[test]]
+name = "fs"
+required-features = ["fs", "webdav", "s3"]
+
+[[test]]
+name = "stage4"
+required-features = ["fs"]
+
+[[test]]
+name = "services"
+required-features = ["fs", "webdav", "s3"]
+
+[[test]]
+name = "drive"
+required-features = ["fs", "drive-experimental"]
+
+[[example]]
+name = "two_devices"
+required-features = ["fs"]

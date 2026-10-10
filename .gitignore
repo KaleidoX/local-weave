@@ -1,0 +1,26 @@
+# IDE and editor
+.idea
+.vscode
+!.vscode/settings.json
+**/vendor
+dist/
+
+# harness
+.agents/
+.codegraph/
+.codex/
+
+# env files for backends
+.env
+.env.*
+
+# profiling
+flamegraph.svg
+perf.*
+
+**/.DS_Store
+
+# cache files
+**/__pycache__/
+.cache/
+/target/

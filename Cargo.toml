@@ -1,0 +1,25 @@
+[workspace]
+members = ["core/protocol", "core/sqlite", "integrations/opendal", "bin/lfs", "bindings/nodejs/native"]
+default-members = ["core/protocol", "core/sqlite"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+license = "Apache-2.0"
+description = "LocalWeave SQLite local-first sync SDK"
+repository = "https://github.com/KaleidoX/local-weave"
+
+[workspace.dependencies]
+lfs-protocol = { path = "core/protocol", version = "=0.1.0" }
+rusqlite = { version = "=0.40.2", default-features = false, features = ["session", "hooks", "limits", "backup"] }
+libsqlite3-sys = { version = "=0.38.2", default-features = false, features = ["session"] }
+fallible-streaming-iterator = "=0.1.9"
+sha2 = { version = "=0.11.0", default-features = false }
+
+lfs-sqlite = { path = "core/sqlite", version = "=0.1.0" }
+opendal = { version = "=0.59.4", default-features = false, features = ["executors-tokio"] }
+tokio = { version = "=1.53.2", features = ["rt-multi-thread", "macros", "time", "sync"] }
+futures-util = { version = "=0.3.32", default-features = false, features = ["std"] }
+url = "=2.5.8"
