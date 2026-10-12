@@ -985,6 +985,7 @@ dependencies = [
  "fallible-streaming-iterator",
  "getrandom 0.4.3",
  "lfs-protocol",
+ "libc",
  "libsqlite3-sys",
  "rusqlite",
  "serde",

@@ -33,3 +33,13 @@
 - 该次 Rust 源码、测试和 Cargo.lock 保持迁移前字节不变。并行锁竞争是待查假设，根因未确认，未修改 SDK、测试断言或 CI 并行方式；不能宣称最终并行回归全绿。见 [已知限制](KNOWN_LIMITATIONS.md)。
 
 MODEL/FAULT 仅证明协议及失败路径；本地 HTTP 不等于云服务。真实 WebDAV 对象清理曾得到 DELETE 204 与后续 PROPFIND 404，严格工厂仍拒绝非 loopback HTTP，附件仍 Unsupported。所有资格边界见 [能力矩阵](CAPABILITIES.md)，风险见 [已知限制](KNOWN_LIMITATIONS.md)。
+
+## 2026-10-10 Android 文件锁适配
+
+Rust 1.96 Android 的 `File::try_lock` 返回 Unsupported；旧实现把所有锁错误映射为 DatabaseInUse。新 Android 路径使用 NDK flock，其他平台保留标准库实现。只有 WouldBlock 映射为 DatabaseInUse，其他错误为 Error::Io。文件所有权与 SQLite 连接仍由 Store 生命周期管理。
+
+Linux x86_64 bundled profile 执行 `python3 scripts/check.py format-check lint type test --scope rust --offline`，整体退出码 0；包括默认并行 workspace 回归。既有 ignored 服务用例不计作通过。
+
+Android-x86 9.0-r2 / API 28 上，NDK 28.2.13676358 编译的 CardWeave 私有公开 API consumer 实测同进程竞争拒绝、显式 close 后重开、独立进程持锁竞争拒绝、持锁进程终止后重开、身份不符导致 open 失败后正常重开，退出码 0。Flutter 3.47.7 / FRB 2.13.0 原生 APK 实测字段保真、SQLite Session、Fs 双端同步、并发编辑/删除冲突及显式解决；新的应用进程读回两端已解决数据与零 outbox。此结果仅适用于 Android x86_64、bundled SQLite 和指定本地夹具，不代表 ARM/iOS、系统 SQLite、GPU、硬件 KeyStore 或生产云资格。
+
+同一 Android APK 另通过本地 rclone 1.75.1 HTTPS WebDAV 的双端同步、并发编辑/删除冲突、显式解决与独立进程重开。使用 AndroidCAStore 中的临时用户 CA 验证合法证书；错误主机名和未知 CA 均失败且 outbox 不被确认，回到正确 endpoint 后恢复；新应用进程重新进行 HTTPS 请求也通过。JNI 初始化使用 Application Context，Kotlin AAR 0.2.0 与 verifier 0.7.1 配套。该结果属于本地服务，不提升为生产云支持。

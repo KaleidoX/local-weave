@@ -2,7 +2,7 @@
 
 [文档目录](README.md) · [能力矩阵](CAPABILITIES.md) · [路线](ROADMAP.md)
 
-当前验证范围为 Linux x86_64 / Rust 1.96；Node 既有验证使用 Node 22.23.3、Node-API 8。macOS、Windows、其他 Node 版本、Bun、Android/iOS 未验证；浏览器不在当前范围。
+当前验证范围为 Linux x86_64 / Rust 1.96；Node 既有验证使用 Node 22.23.3、Node-API 8。新增 Android-x86 9.0-r2 / API 28 的 bundled SQLite、文件锁与 CardWeave 移动探针限定验证，详见能力矩阵。macOS、Windows、其他 Node 版本、Bun、Android ARM/iOS 未验证；浏览器不在当前范围。
 
 ## 数据库路径与宿主引擎
 
@@ -12,7 +12,7 @@
 
 宿主 SQLite 必须匹配头文件、ABI 和 Session/preupdate 行为。SQLCipher、自定义 VFS、原生 schema 扩展和任意 SQLite 版本没有资格保证；加载器缺符号可能在 Rust 返回错误之前终止启动。
 
-本地目录定名为 `local-weave` 后，首次默认并行核心回归中的关闭重开用例收到 `DatabaseInUse`；单例与整组串行诊断通过，但不能抵消并行失败。源码与锁文件未因此修改，根因尚未确认，也未证明仅为测试问题。当前不能声称默认并行回归全绿，详见 [验证范围](TEST_REPORT.md)。
+本地目录定名为 `local-weave` 后，首次默认并行核心回归中的关闭重开用例收到 `DatabaseInUse`；单例与整组串行诊断通过，但不能抵消并行失败。源码与锁文件未因此修改，根因尚未确认，也未证明仅为测试问题。该历史失败仍未证明根因。2026-10-10 Android 锁修复后的 bundled workspace 默认并行 Rust 门禁已通过；本次结果不证明历史失败已被修复，详见 [验证范围](TEST_REPORT.md)。
 
 ## schema、事务和因果历史
 

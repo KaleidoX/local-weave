@@ -17,6 +17,7 @@ rusqlite = { version = "=0.40.2", default-features = false, features = ["session
 libsqlite3-sys = { version = "=0.38.2", default-features = false, features = ["session"] }
 fallible-streaming-iterator = "=0.1.9"
 sha2 = { version = "=0.11.0", default-features = false }
+libc = "=0.2.190"
 
 lfs-sqlite = { path = "core/sqlite", version = "=0.1.0" }
 opendal = { version = "=0.59.4", default-features = false, features = ["executors-tokio"] }

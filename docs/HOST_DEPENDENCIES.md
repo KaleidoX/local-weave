@@ -83,3 +83,13 @@ rmdir "$TMPDIR"
 ```
 
 服务目标需要 `--features fs,webdav,s3`，被 feature gate 跳过的零用例不能算通过。完整检查方法见 [TESTING](TESTING.md)。
+
+## Android 宿主边界
+
+Android 的数据库文件所有权锁使用 NDK `flock(LOCK_EX | LOCK_NB)`，随 SDK 持有的文件句柄关闭而释放。只有锁竞争返回 `DatabaseInUse`；其他系统锁错误保留为 `Error::Io`。其他平台仍使用标准库文件锁。Rust 1.96 的 Android 标准库文件锁不受支持，不能直接替代此适配。
+
+宿主传入应用私有目录的真实路径；Android 返回的数据目录可能包含系统符号链接，应先解析已存在的应用目录，再构造数据库路径。SDK 仍拒绝符号链接，不能靠关闭该检查适配移动平台。
+
+使用当前 reqwest/rustls HTTPS transport 时，Android 宿主必须在首次网络操作前初始化 `rustls-platform-verifier` 的 JVM、应用 Context 与类加载器，并打包与 Cargo.lock 中 `rustls-platform-verifier-android` 版本匹配的 Kotlin/Maven 组件。当前锁定 verifier 0.7.1 对应 Android 组件 0.2.0，二者版本号不同。传入 Application Context，初始化失败必须阻止网络使用；进程重启后重新初始化。此工作归应用宿主，SDK 不持有 Android Activity。测试 CA 只能进入调试夹具，不放宽正式应用的证书或主机名验证。
+
+该 verifier 的 Android 组件显式读取 AndroidCAStore，不把应用 Network Security Config 中的 `@raw` 自定义 CA 自动作为信任锚。测试应使用独立虚拟机的临时系统/用户信任项，并在测试后移除；不能通过关闭 TLS 校验使测试通过。

@@ -19,6 +19,7 @@ python3 scripts/dependency_inventory.py /tmp/local-weave-metadata.json
 | SQLite（bundled opt-in）                 | 3.53.2                  | 内嵌引擎；public domain；默认由宿主提供引擎   |
 | fallible-streaming-iterator              | 0.1.9                   | Session 迭代；MIT OR Apache-2.0               |
 | sha2                                     | 0.11.0                  | 完整性哈希；MIT OR Apache-2.0                 |
+| libc                                     | 0.2.190                 | Android 文件所有权锁 flock；MIT OR Apache-2.0 |
 | getrandom                                | 0.4.3                   | 新 incarnation 随机源；MIT OR Apache-2.0      |
 | opendal / opendal-http-transport-reqwest | 0.59.4                  | 可选存储适配与显式 HTTP transport；Apache-2.0 |
 | tokio                                    | 1.53.2                  | adapter/native runtime；MIT                   |

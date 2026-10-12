@@ -9,6 +9,7 @@ pub use attempts::FailedAttempt;
 mod causal;
 mod envelope;
 pub use envelope::{MAX_ENVELOPE, ObjectKey, OutgoingEnvelope};
+mod ownership;
 mod schema;
 pub mod sync;
 pub use access::{Read, Write};
@@ -158,7 +159,7 @@ impl Store {
             .create(true)
             .truncate(false)
             .open(path)?;
-        ownership.try_lock().map_err(|_| Error::DatabaseInUse)?;
+        ownership::acquire(&ownership)?;
         let conn = Connection::open_with_flags(
             path,
             rusqlite::OpenFlags::SQLITE_OPEN_READ_WRITE
