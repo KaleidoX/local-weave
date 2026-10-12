@@ -70,6 +70,7 @@ pub struct OpenDalTransport {
     capabilities: Capabilities,
     scan: Mutex<Option<Scan>>,
     attachment_streaming: bool,
+    webdav_bootstrap: Option<(Operator, String)>,
 }
 fn classify(e: opendal::Error) -> NetworkError {
     if e.message() == "lfs response limit" {
@@ -210,6 +211,7 @@ impl OpenDalTransport {
         let attachment_streaming = c.write_can_multi && matches!(op.info().scheme(), "fs" | "s3");
         Ok(Self {
             attachment_streaming,
+            webdav_bootstrap: None,
             op,
             options,
             fs_root,
@@ -286,23 +288,52 @@ impl OpenDalTransport {
         credentials: WebdavCredentials,
         options: Options,
     ) -> Result<Self> {
+        Self::webdav_with_directory(endpoint_url, "", credentials, options)
+    }
+    /// Scope WebDAV objects to a relative directory, creating missing parents on sync.
+    #[cfg(feature = "webdav")]
+    pub fn webdav_with_directory(
+        endpoint_url: &str,
+        directory: &str,
+        credentials: WebdavCredentials,
+        options: Options,
+    ) -> Result<Self> {
         endpoint(endpoint_url, options)?;
-        let mut b = services::Webdav::default().endpoint(endpoint_url).root("/");
-        b = match credentials {
-            WebdavCredentials::Basic { username, password } => {
-                if username.is_empty() || password.is_empty() {
-                    return Err(NetworkError::Auth);
+        let directory = directory.trim_matches('/');
+        if directory.len() > 1024
+            || directory.contains(['\\', '\0'])
+            || (!directory.is_empty()
+                && directory
+                    .split('/')
+                    .any(|p| p.is_empty() || p == "." || p == ".."))
+        {
+            return Err(NetworkError::Unsupported);
+        }
+        let make = |root: &str| {
+            let mut b = services::Webdav::default()
+                .endpoint(endpoint_url.trim_end_matches('/'))
+                .root(root);
+            b = match &credentials {
+                WebdavCredentials::Basic { username, password } => {
+                    if username.is_empty() || password.is_empty() {
+                        return Err(NetworkError::Auth);
+                    }
+                    b.username(username).password(password)
                 }
-                b.username(&username).password(&password)
-            }
-            WebdavCredentials::Bearer(token) => {
-                if token.is_empty() {
-                    return Err(NetworkError::Auth);
+                WebdavCredentials::Bearer(token) => {
+                    if token.is_empty() {
+                        return Err(NetworkError::Auth);
+                    }
+                    b.token(token)
                 }
-                b.token(&token)
-            }
+            };
+            Self::strict_http(Operator::new(b).map_err(classify)?, options)
         };
-        Self::strict_http(Operator::new(b).map_err(classify)?, options)
+        let mut transport = make(directory)?;
+        if !directory.is_empty() {
+            transport.webdav_bootstrap = Some((make("/")?.op, directory.to_owned()));
+        }
+        Ok(transport)
     }
     #[cfg(feature = "s3")]
     pub fn s3(
@@ -392,11 +423,29 @@ impl OpenDalTransport {
         }
         Ok(())
     }
+    async fn prepare_directory(&self, directory: &str) -> Result<()> {
+        if self.op.info().scheme() != "webdav" {
+            return Ok(());
+        }
+        let (op, directory) = match &self.webdav_bootstrap {
+            Some((op, base)) => (op, format!("{base}/{directory}")),
+            None => (&self.op, directory.to_owned()),
+        };
+        let mut prefix = String::new();
+        for part in directory.trim_end_matches('/').split('/') {
+            prefix.push_str(part);
+            prefix.push('/');
+            op.create_dir(&prefix).await.map_err(classify)?;
+        }
+        Ok(())
+    }
     async fn publish(&self, p: OutgoingEnvelope) -> Result<()> {
         p.validate().map_err(|_| NetworkError::Corrupt)?;
         let key = p.key;
         let path = object_path(&key)?;
         let bytes = p.bytes;
+        self.prepare_directory(path.rsplit_once('/').ok_or(NetworkError::Corrupt)?.0)
+            .await?;
         match self.bounded_read(&path).await {
             Ok(old) if old == bytes => return self.durable_fs(&path),
             Ok(old) => {
@@ -432,6 +481,9 @@ impl OpenDalTransport {
         }
         let root = dataset_root(dataset)?;
         self.safe_path(&root)?;
+        if cursor == 0 {
+            self.prepare_directory(&root).await?;
+        }
         let mut guard = self.scan.lock().await;
         if guard
             .as_ref()

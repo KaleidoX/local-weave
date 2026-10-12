@@ -19,3 +19,5 @@ runner 只启动自己的 loopback 服务，显式 `--config /dev/null`，生成
 ## 证据解释
 
 Fs lost-ack、缺页、延迟和重复通过真实文件上的故障包装注入；HTTP 错误分类与截断使用合成故障服务。它们验证失败路径，不等于真实云端。子进程重启不等于硬件掉电；子进程的嵌套摘要不重复计数。S3 multipart 资格仅限本地 rclone；WebDAV 附件 Unsupported；AWS/STS、移动与其他 OS 未验证。
+
+`webdav_bootstrap` 使用合成 HTTP 服务验证缺失父目录返回 409 的服务语义：通过 `webdav_with_directory` 指定服务入口及多级相对目录，空远端扫描、首次上传、另一设备读回均须成功。原 `webdav` 工厂沿用空目录作用域；目录逐层创建，409 不直接视为成功。该夹具与真实云端验证分开计。
