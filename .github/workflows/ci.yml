@@ -1,7 +1,6 @@
 name: Linux bundled checks
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
@@ -14,7 +13,6 @@ jobs:
     timeout-minutes: 30
     env:
       CARGO_TERM_COLOR: always
-      TMPDIR: ${{ runner.temp }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,15 +23,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: pip
+          cache-dependency-path: scripts/requirements-dev.txt
       - name: Prepare build dependencies
         run: sudo apt-get update && sudo apt-get install -y build-essential pkg-config libclang-dev
-      - name: Prepare Rust 1.96.0
-        run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
       - name: Install locked development tools
         run: |
           npm ci --prefix bindings/nodejs
           python3 -m venv scripts/.venv
           scripts/.venv/bin/python -m pip install -r scripts/requirements-dev.txt
+      - uses: Swatinem/rust-cache@v2.9.3
+        with:
+          workspaces: .
       - name: Static gates
         run: python3 scripts/check.py format-check lint type
       - name: Fresh bundled Node addon and actual Fs tests
